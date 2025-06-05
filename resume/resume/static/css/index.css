@@ -1,0 +1,35 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: white;
+    background: #111; /* Dark background for better contrast */
+}
+
+/* Home Section */
+.home {
+    padding: 100px 20px; /* Adjusted padding to prevent overlap with navbar */
+}
+
+.home h2 {
+    margin-bottom: 20px; /* Space below the heading */
+    font-size: 2em; /* Larger font size for the heading */
+}
+
+.home p {
+    margin: 5px 0; /* Space between paragraphs */
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}

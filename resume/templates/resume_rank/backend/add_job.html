@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Add Job</title>
+
+    <style>
+        /* Reset some default styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Centering the form on the page */
+        .container {
+            width: 40%;
+            margin: 50px auto;
+            padding: 30px;
+            background: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Page heading */
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        /* Styling the form */
+        .job-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Label styles */
+        label {
+            text-align: left;
+            font-weight: bold;
+            color: #444;
+            margin-top: 10px;
+        }
+
+        /* Input fields */
+        input, textarea, select {
+            width: 95%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        /* Input focus effect */
+        input:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* Textarea resizing */
+        textarea {
+            resize: vertical;
+        }
+
+        /* Submit button styling */
+        .submit-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 15px;
+        }
+
+        /* Submit button hover effect */
+        .submit-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Back link styling */
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Add a New Job</h2>
+        <form method="POST" class="job-form">
+            {% csrf_token %}
+            
+            <label for="id_title">Job Title:</label>
+            <input type="text" name="title" id="id_title" required>
+            
+            <label for="id_company">Company:</label>
+            <input type="text" name="company" id="id_company" required>
+            
+            <label for="id_required_skills">Required Skills:</label>
+            <input type="text" name="required_skills" id="id_required_skills" required>
+            
+            <label for="id_education_level">Education Level:</label>
+            <select name="education_level" id="id_education_level" required>
+                <option value="">Select Education Level</option>
+                <option value="SPM">SPM</option>
+                <option value="Diploma">Diploma</option>
+                <option value="Degree">Degree</option>
+                <option value="Masters">Masters</option>
+                <option value="PhD">PhD</option>
+                <option value="Others">Others</option>
+            </select>
+            <input type="text" name="custom_education_level" id="custom_education_level" placeholder="Enter your education level" style="display: none;" required>
+            
+            <label for="id_course">Course:</label>
+            <select name="course" id="id_course" required>
+                <option value="">Select Course</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Business Administration">Business Administration</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Finance">Finance</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Others">Others</option>
+            </select>
+            <input type="text" name="custom_course" id="custom_course" placeholder="Enter your course" style="display: none;" required>
+            
+            <label for="id_experiences_years">Years of Experience:</label>
+            <input type="number" name="experiences_years" id="id_experiences_years" min="0" required>
+            
+            <label for="id_description">Job Description:</label>
+            <textarea name="description" id="id_description" rows="5" required></textarea>
+            
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        <a href="{% url 'job_list' %}" class="back-link">Back to Job List</a>
+    </div>
+
+    <script>
+        const educationLevelSelect = document.getElementById("id_education_level");
+        const customEducationInput = document.getElementById("custom_education_level");
+        const courseSelect = document.getElementById("id_course");
+        const customCourseInput = document.getElementById("custom_course");
+
+        // Handle Education Level
+        educationLevelSelect.addEventListener("change", function () {
+            if (this.value === "Others") {
+                customEducationInput.style.display = "block";
+                customEducationInput.required = true;
+            } else {
+                customEducationInput.style.display = "none";
+                customEducationInput.required = false;
+            }
+        });
+
+        // Handle Course
+        courseSelect.addEventListener("change", function () {
+            if (this.value === "Others") {
+                customCourseInput.style.display = "block";
+                customCourseInput.required = true;
+            } else {
+                customCourseInput.style.display = "none";
+                customCourseInput.required = false;
+            }
+        });
+    </script>
+</body>

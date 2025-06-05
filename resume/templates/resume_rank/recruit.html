@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/recruit.css' %}">
+    <title>Recruitment</title>
+</head>
+<body>
+
+    <!-- Navbar -->
+    {% include 'resume_rank/navbar.html' %}
+
+    <div class="home" id="recruit">
+        <h2>Available Jobs</h2>
+        <ul>
+            {% for job in jobs %}
+            <li style="padding:30px;">
+                <h3>{{ job.title }} at {{ job.company }}</h3>
+                <p><strong>Required skills:</strong> {{ job.required_skills }}</p>
+                <p><strong>Education level:</strong> {{ job.education_level }}</p>
+                <p><strong>Years of experiences:</strong> {{ job.experiences_years }}</p>
+                <p><strong>Description:</strong> {{ job.description }}</p>
+                <button onclick="openPopup('{{ job.job_id }}', '{{ job.title }}')">Apply Now</button>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Pop-up Form -->
+    <div class="popup-form" id="applyPopup">
+        <h2>Apply for <span id="popupJobTitle"></span></h2>
+        <form id="applicationForm" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="job_id" id="popupJobId">
+            <label>Name:</label>
+            <input type="text" name="name" required>
+            <label>Email:</label>
+            <input type="email" name="email" required>
+            <label>Upload Resume (PDF/DOCX):</label>
+            <input type="file" name="file" accept=".doc,.docx,.pdf" required>
+            <button type="submit">Submit Application</button>
+        </form>
+        <button class="close-btn" onclick="closePopup()">Cancel</button>
+    </div>
+
+    <footer>
+        &copy; 2025 Merlian Sdn. Bhd. All rights reserved.
+    </footer>
+
+    <script src="{% static 'js/recruit.js' %}"></script>
+</body>
+</html>

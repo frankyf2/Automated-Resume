@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --gradient: linear-gradient(45deg, #ff3366, #ff6b6b, #4834d4, #686de0);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --border: 1px solid rgba(255, 255, 255, 0.1);
+  --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+body {
+  background: #0a0a0a;
+  min-height: 100vh;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.2rem 5%;
+  backdrop-filter: blur(12px);
+  background: var(--glass-bg);
+  border-bottom: var(--border);
+  z-index: 1000;
+  transition: padding 0.3s ease, background 0.3s ease; /* Smooth transition */
+}
+
+.navbar.scrolled {
+  padding: 0.8rem 5%;
+  background: rgba(10, 10, 10, 0.95);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  min-width: 700px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 8s linear infinite;
+  background-size: 300%;
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+}
+
+.nav-links a:hover {
+  color: #ff6b6b; /* Change color on hover */
+}
+
+.nav-links a.active {
+  border-bottom: 2px solid #ff6b6b; /* Underline for active link */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .nav-links {
+    flex-direction: column; /* Stack links vertically */
+    gap: 1rem; /* Space between links */
+    width: 100%; /* Full width */
+  }
+
+  .nav-links a {
+    padding: 0.8rem; /* More padding for touch targets */
+    width: 100%; /* Full width for links */
+    text-align: center; /* Center text */
+  }
+}

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <title>Resume List</title>
+</head>
+<body>
+    <body>
+        <div class="sidebar">
+            {% block sidebar %}
+            {% include 'resume_rank/backend/sidebar.html' %}
+        {% endblock %}
+        </div>
+    
+        <!-- ============= Home Section =============== -->
+        <section class="home">
+            <h2>Resume List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Resume ID</th>
+                        <th>User ID</th>
+                        <th>Job ID </th>
+                        <th>Resume file</th>
+                        <th>Skills</th>
+                        <th>Education</th>
+                        <th>Experiences</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resume in resumes %}
+                    <tr>
+                        <td>{{ resume.resume_id }}</td>
+                        <td>{{ resume.candidate_id }}</td>
+                        <td>{{ resume.job_id }}</td>
+                        <td>
+                            <a href="{{ resume.file_path.url }}" target="_blank">
+                                {{ resume.file_path.name|cut:"resumes/" }}
+                            </a>
+                        </td>
+                        <td>{{ resume.skills }}</td>
+                        <td>{{ resume.education }}</td>
+                        <td>{{ resume.experience }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">No resume available</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <script src="{% static 'js/sidebar.js' %}"></script>
+</body>
+</html>

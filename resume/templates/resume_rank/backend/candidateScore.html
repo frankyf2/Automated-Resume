@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <title>Candidate Score</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        {% block sidebar %}
+        {% include 'resume_rank/backend/sidebar.html' %}
+    {% endblock %}
+    </div>
+
+    <!-- ============= Home Section =============== -->
+    <section class="home">
+    <h2>Candidate Score</h2>
+    <table >
+        <thead>
+            <tr>
+                <th>Match ID</th>
+                <th>Resume ID</th>
+                <th>Job ID</th>
+                <th>Match Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for match in candidate_matches %}
+            <tr>
+                <td>{{ match.match_id }}</td>
+                <td>{{ match.resume_id }}</td>
+                <td>{{ match.job_id }}</td>
+                <td>{{ match.match_score }}</td>
+            </tr>
+            {% empty %}
+                    <tr>
+                        <td colspan="4">No users available</td>
+                    </tr>
+                    {% endfor %}
+        </tbody>
+    </table>
+</section>
+<script src="{% static 'js/sidebar.js' %}"></script>
+</body>
+</html>

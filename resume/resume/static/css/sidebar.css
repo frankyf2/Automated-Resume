@@ -1,0 +1,110 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Globals */
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* Variables */
+:root {
+    --color_Blue: #3f93f1;
+    --color_Dark1: #1e1e1e;
+    --color_Dark2: #252527;
+    --color_Light1: #dfdfdf;
+    --color_Light2: #c4c4c4;
+}
+
+/* =============== Sidebar =============== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 260px;
+    background-color: var(--color_Dark1);
+    transition: all .5s ease;
+    z-index: 100;
+}
+
+/* Sidebar List */
+.sidebar-list {
+    height: 100%;
+    padding: 30px 0 0 0;
+    overflow: auto;
+}
+
+.sidebar-list li {
+    transition: all .5s ease;
+}
+
+.sidebar-list li:hover {
+    background-color: var(--color_Dark2);
+}
+
+.sidebar-list li .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding-top:20px;
+}
+
+.sidebar-list li .title .link {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-list li .title i {
+    height: 50px;
+    min-width: 78px;
+    text-align: center;
+    line-height: 50px;
+    color: var(--color_Light1);
+    font-size: 20px;
+}
+
+.sidebar-list li .title .name {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--color_Light1);
+}
+
+/* Submenu (Always Expanded) */
+.sidebar-list li .submenu {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-list li .submenu a {
+    color: var(--color_Light1);
+    font-size: 16px;
+    padding: 5px 20px;
+}
+
+/* =============== Home Section =============== */
+.home {
+    position: relative;
+    background-color: var(--color_Light1);
+    left: 260px;  /* Sidebar width */
+    width: calc(100% - 260px);  /* Remaining space after sidebar */
+    height: 100vh;
+    transition: all .5s ease;
+}
+
+/* ============ Responsive / Breakpoints ========== */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px;  /* Collapse sidebar on smaller screens */
+    }
+
+    .home {
+        left: 80px;  /* Adjust content width for collapsed sidebar */
+        width: calc(100% - 80px);
+    }
+}

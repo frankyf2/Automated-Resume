@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <title>User List</title>
+</head>
+<body>
+    <body>
+        <div class="sidebar">
+            {% block sidebar %}
+            {% include 'resume_rank/backend/sidebar.html' %}
+        {% endblock %}
+        </div>
+    
+        <!-- ============= Home Section =============== -->
+        <section class="home">
+            <h2>Users List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for candidate in candidates %}
+                    <tr>
+                        <td>{{ candidate.candidate_id }}</td>
+                        <td>{{ candidate.name }}</td>
+                        <td>{{ candidate.email }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">No users available</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <script src="{% static 'js/sidebar.js' %}"></script>
+</body>
+</html>

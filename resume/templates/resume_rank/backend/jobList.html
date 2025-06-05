@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        
+        .add-job-btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .add-job-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <body>
+        <div class="sidebar">
+            {% block sidebar %}
+            {% include 'resume_rank/backend/sidebar.html' %}
+        {% endblock %}
+        </div>
+    
+        <!-- ============= Home Section =============== -->
+        <section class="home">
+            <h2>Job List</h2>
+            <!-- Add Job Button -->
+        <a href="{% url 'add_job' %}" class="add-job-btn">+ Add Job</a>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job ID</th>
+                        <th>Title</th>
+                        <th>Company</th>
+                        <th>Required skills</th>
+                        <th>Education level</th>
+                        <th>Years of experiences</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in job_description %}
+                    <tr>
+                        <td>{{ job.job_id }}</td>
+                        <td>{{ job.title }}</td>
+                        <td>{{ job.company }}</td>
+                        <td>{{ job.required_skills }}</td>
+                        <td>{{ job.education_level }}</td>
+                        <td>{{ job.experiences_years }}</td>
+                        <td>{{ job.description }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">No job available</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+    
+
+        <!-- Link JS -->
+        <script src="{% static 'js/sidebar.js' %}"></script>
+</body>
+</html>

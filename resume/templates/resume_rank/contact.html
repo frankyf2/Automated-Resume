@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>Homepage</title>
+</head>
+<body>
+
+    <!-- Navbar -->
+    {% include 'resume_rank/navbar.html' %}
+
+    <div class="home" id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: contact@company.com</p>
+        <p>Phone: +123456789</p>
+    </div>
+
+    <footer>
+        &copy; 2025 Merlian Sdn. Bhd. All rights reserved.
+    </footer>
+</body>
+</html>
